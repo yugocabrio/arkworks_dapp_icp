@@ -342,6 +342,7 @@ dependencies = [
  "candid",
  "ic-cdk",
  "ic-cdk-macros",
+ "once_cell",
 ]
 
 [[package]]

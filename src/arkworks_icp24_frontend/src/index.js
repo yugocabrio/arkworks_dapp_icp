@@ -9,7 +9,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   button.setAttribute("disabled", true);
 
   // Interact with foo actor, calling the greet method
-  const greeting = await arkworks_icp24_backend.greet(name);
+  const greeting = await arkworks_icp24_backend.groth16();
 
   button.removeAttribute("disabled");
 

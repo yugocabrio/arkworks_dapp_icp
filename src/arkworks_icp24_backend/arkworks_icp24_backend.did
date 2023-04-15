@@ -1,3 +1,3 @@
 service : {
-    "groth16": () -> (text) query;
+    "verify_groth16": () -> (text) query;
 }
