@@ -1,0 +1,29 @@
+{
+  "canisters": {
+    "arkworks_icp24_backend": {
+      "candid": "src/arkworks_icp24_backend/arkworks_icp24_backend.did",
+      "package": "arkworks_icp24_backend",
+      "type": "rust"
+    },
+    "arkworks_icp24_frontend": {
+      "dependencies": [
+        "arkworks_icp24_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/arkworks_icp24_frontend/src/index.html"
+      },
+      "source": [
+        "src/arkworks_icp24_frontend/assets",
+        "dist/arkworks_icp24_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "version": 1
+}
