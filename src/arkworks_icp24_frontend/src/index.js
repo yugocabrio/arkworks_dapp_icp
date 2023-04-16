@@ -14,29 +14,40 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
   button.setAttribute("disabled", true);
 
+  const resultElement = document.getElementById("verification-result");
+  resultElement.style.display = "none"; // 追加: submitボタンが押された時にResultを消す
+
   // Generate proof
   const proof = create_proof(a, b);
 
   // Generate JSON proof
   const json_proof = create_json_proof(proof);
-  console.log("Proof:", proof);
-  console.log("JSON Proof:", json_proof);
+
+  // Display the JSON proof
+  document.getElementById("json-proof").innerText = JSON.stringify(JSON.parse(json_proof), null, 2);
 
   try {
     // Interact with the backend canister, calling the verify_groth16 method with the generated proof
     const verificationResult = await arkworks_icp24_backend.verify_groth16(proof);
-    console.log("Verification Result:", verificationResult);
-
-    // Display the JSON proof
-    document.getElementById("json-proof").innerText = JSON.stringify(JSON.parse(json_proof), null, 2);
 
     // Display the verification result
-    document.getElementById("verification-result").innerText = verificationResult === "Proof is valid" ? "Proof is valid!" : "Proof is invalid!";
+    resultElement.innerText = verificationResult === "Proof is valid" ? "Proof is valid!" : "Proof is invalid!";
+    resultElement.style.display = "inline"; // 結果が得られた時に表示を切り替える
   } catch (error) {
-    document.getElementById("verification-result").innerText = "Error: " + error;
+    resultElement.innerText = "Error: " + error;
+    resultElement.style.display = "inline"; // エラーが発生した時に表示を切り替える
   }
 
   button.removeAttribute("disabled");
 
   return false;
 });
+
+// Add reset button event listener
+document.getElementById("reset-button").addEventListener("click", () => {
+  document.getElementById("number1").value = "";
+  document.getElementById("number2").value = "";
+  document.getElementById("verification-result").innerText = "";
+  document.getElementById("json-proof").innerText = "";
+});
+
