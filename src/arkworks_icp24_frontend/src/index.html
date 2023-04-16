@@ -7,6 +7,8 @@
 </head>
 <body>
   <h1>zk-SNARK Proof Generator</h1>
+  <p>This page is a Zero-Knowledge Proof (ZKP) web application.</p>
+  <p>Prove that you know which two numbers multiply to get 24. Enter these numbers, “a” and “b”, in the form below.</p>
 
   <form>
     <div>
@@ -21,38 +23,48 @@
   </form>
 
   <h2>Result:</h2>
-  <p id="greeting"></p>
+  <p id="verification-result"></p>
+
+  <h2>JSON Proof:</h2>
+  <pre id="json-proof"></pre>
 
   <script type="module">
-    import init, { create_proof } from "./rust_zkp/pkg/rust_zkp.js";
+    // index.js content
+    import init, { create_proof, create_json_proof } from "./rust_zkp/pkg/rust_zkp.js";
     import { arkworks_icp24_backend } from "../../declarations/arkworks_icp24_backend";
-  
+
     (async () => {
       await init();
     })();
-  
+
     document.querySelector("form").addEventListener("submit", async (e) => {
       e.preventDefault();
       const button = e.target.querySelector("button");
-  
+
       const a = parseInt(document.getElementById("number1").value);
       const b = parseInt(document.getElementById("number2").value);
-  
+
       button.setAttribute("disabled", true);
-  
+
       // Generate proof
       const proof = create_proof(a, b);
-  
+
+      // Generate JSON proof
+      const json_proof = create_json_proof(proof);
+
       // Interact with the backend canister, calling the verify_groth16 method with the generated proof
-      const greeting = await arkworks_icp24_backend.verify_groth16(proof);
-  
+      const verificationResult = await arkworks_icp24_backend.verify_groth16(proof);
+
       button.removeAttribute("disabled");
-  
-      document.getElementById("greeting").innerText = greeting;
-  
+
+      // Display the JSON proof
+      document.getElementById("json-proof").innerText = JSON.stringify(JSON.parse(json_proof), null, 2);
+
+      // Display the verification result
+      document.getElementById("verification-result").innerText = verificationResult ? "Proof is valid!" : "Proof is invalid!";
+
       return false;
     });
   </script>
 </body>
 </html>
-
