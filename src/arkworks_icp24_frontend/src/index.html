@@ -1,24 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>arkworks_icp24</title>
-    <base href="/" />
-    <link rel="icon" href="favicon.ico" />
-    <link type="text/css" rel="stylesheet" href="main.css" />
-  </head>
-  <body>
-    <main>
-      <img src="logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#">
-        <label for="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting"></section>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>zk-SNARK Proof Generator</title>
+</head>
+<body>
+  <h1>zk-SNARK Proof Generator</h1>
+
+  <form>
+    <div>
+      <label for="number1">Number 1:</label>
+      <input type="number" id="number1" name="number1" required>
+    </div>
+    <div>
+      <label for="number2">Number 2:</label>
+      <input type="number" id="number2" name="number2" required>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>Result:</h2>
+  <p id="greeting"></p>
+
+  <script type="module">
+    import init, { create_proof } from "./rust_zkp/pkg/rust_zkp.js";
+    import { arkworks_icp24_backend } from "../../declarations/arkworks_icp24_backend";
+  
+    (async () => {
+      await init();
+    })();
+  
+    document.querySelector("form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const button = e.target.querySelector("button");
+  
+      const a = parseInt(document.getElementById("number1").value);
+      const b = parseInt(document.getElementById("number2").value);
+  
+      button.setAttribute("disabled", true);
+  
+      // Generate proof
+      const proof = create_proof(a, b);
+  
+      // Interact with the backend canister, calling the verify_groth16 method with the generated proof
+      const greeting = await arkworks_icp24_backend.verify_groth16(proof);
+  
+      button.removeAttribute("disabled");
+  
+      document.getElementById("greeting").innerText = greeting;
+  
+      return false;
+    });
+  </script>
+</body>
 </html>
+

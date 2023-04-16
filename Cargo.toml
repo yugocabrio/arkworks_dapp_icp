@@ -1,4 +1,5 @@
 [workspace]
 members = [
     "src/arkworks_icp24_backend",
+    "src/arkworks_icp24_frontend/src/rust_zkp"
 ]
