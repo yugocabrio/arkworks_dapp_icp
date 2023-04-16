@@ -1,3 +1,6 @@
+type ProofBytes = blob;
+
 service : {
-    "verify_groth16": () -> (text) query;
+    "verify_groth16": (ProofBytes) -> (text);
+    "test_verify_groth16": () -> (text) query;
 }
