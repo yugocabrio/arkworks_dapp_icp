@@ -13,6 +13,7 @@
         "entrypoint": "src/arkworks_icp24_frontend/src/index.html"
       },
       "source": [
+        "src/arkworks_icp24_frontend/assets",
         "dist/arkworks_icp24_frontend/"
       ],
       "type": "assets"

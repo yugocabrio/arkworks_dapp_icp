@@ -4,25 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>zk-SNARK Proof Generator</title>
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
   <div class="container">
     <h1>zk-SNARK dapp</h1>
     <h3>Generating a Proof in Frontend, Verifying it on Cniaster Smart Contract (IC∞)</h3>
-    <p>Prove that you know which two numbers multiply to get 24 without revealing numbers.<br> Enter these numbers, “a” and “b”, in the form below.</p>
+    <p>Prove that you know which two numbers multiply to get 24 without revealing the numbers.<br> Enter these numbers, “a” and “b”, in the form below.</p>
     <form class="proof-form">
       <div class="input-group">
         <input type="number" id="number1" name="number1" required>
         <span class="operator">x</span>
         <input type="number" id="number2" name="number2" required>
         <span class="result">= 24</span>
-      </div>
-      <div class="button-group">
-        <button type="submit">Submit</button>
+        <button type="submit">Verify</button>
         <button id="reset-button">Reset</button>
       </div>
     </form>
-    
 
     <div class="output">
       <h2>Result: <span id="verification-result" style="display: none;">Proof is valid</span></h2>

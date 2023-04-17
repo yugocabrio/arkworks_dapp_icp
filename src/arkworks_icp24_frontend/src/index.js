@@ -24,14 +24,17 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   const json_proof = create_json_proof(proof);
 
   // Display the JSON proof
-  document.getElementById("json-proof").innerText = JSON.stringify(JSON.parse(json_proof), null, 2);
+  const jsonProofElement = document.getElementById("json-proof");
+  jsonProofElement.innerText = JSON.stringify(JSON.parse(json_proof), null, 2);
+  jsonProofElement.style.display = "block"; // 追加: 証明が生成された時に表示を切り替える
+  
 
   try {
     // Interact with the backend canister, calling the verify_groth16 method with the generated proof
     const verificationResult = await arkworks_icp24_backend.verify_groth16(proof);
 
     // Display the verification result
-    resultElement.innerText = verificationResult === "Proof is valid" ? "Proof is valid!" : "Proof is invalid!";
+    resultElement.innerText = verificationResult === "Proof is valid" ? "Proof is True!" : "Proof is False";
     resultElement.style.display = "inline"; // 結果が得られた時に表示を切り替える
   } catch (error) {
     resultElement.innerText = "Error: " + error;
@@ -48,6 +51,8 @@ document.getElementById("reset-button").addEventListener("click", () => {
   document.getElementById("number1").value = "";
   document.getElementById("number2").value = "";
   document.getElementById("verification-result").innerText = "";
-  document.getElementById("json-proof").innerText = "";
+  const jsonProofElement = document.getElementById("json-proof");
+  jsonProofElement.innerText = ""; // 追加: JSON証明をリセットする
+  jsonProofElement.style.display = "none"; // 追加: JSON証明を非表示にする
 });
 
