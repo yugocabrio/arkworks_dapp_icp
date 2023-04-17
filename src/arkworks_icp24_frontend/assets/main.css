@@ -1,15 +1,12 @@
-/* 全体のフォントと背景色を設定 */
 body {
     font-family: 'Poppins', Arial, sans-serif;
-    background-color: #333333; /* 背景色を明るいグレーに変更 */
+    background-color: #333333; 
     margin: 0;
     padding: 20px;
 }
 
-
-/* タイトルのスタイルを設定 */
 h1, h2, h3 {
-    color: #333333; /* タイトルの文字色を濃いグレーに変更 */
+    color: #333333;
 }
 
 h1 {
@@ -20,16 +17,14 @@ h3 {
     font-size: 1.5rem;
 }
 
-/* テキストのスタイルを設定 */
 p {
     font-size: 1.1rem;
-    color: #333333; /* テキストの文字色を中間のグレーに変更 */
+    color: #333333; 
     line-height: 1.5;
 }
 
-/* ボタンのスタイルを設定 */
 button {
-    background-color: #4caf50; /* ボタンの背景色を明るい緑に変更 */
+    background-color: #4caf50; 
     color: #FFFFFF;
     border: none;
     padding: 10px 20px;
@@ -38,27 +33,23 @@ button {
     cursor: pointer;
     border-radius: 5px;
     box-shadow: 0 2px 4px #0000001a;
-    margin-left: 10px; /* 追加: ボタンの左マージンを設定 */
+    margin-left: 10px; 
 }
 
-/* 最初のボタンの左マージンをリセット */
 .button-group button:first-child {
     margin-left: 0;
 }
 
-/* ホバー時のボタンスタイルを設定 */
 button:hover {
-    background-color: #3f51b5; /* ホバー時のボタンの背景色を青に変更 */
+    background-color: #3f51b5; 
 }
 
-/* 検証結果のスタイルを設定 */
 #verification-result {
     font-weight: bold;
     font-size: 1.5rem;
     color: #4caf50;
 }
 
-/* 入力欄のスタイル */
 .input-group input {
     width: 60px;
     margin: 0 5px;
@@ -71,7 +62,7 @@ button:hover {
 }
 
 .input-group input:focus {
-    border-color: #4caf50; /* フォーカス時の入力欄のボーダーカラーを緑に変更 */
+    border-color: #4caf50; 
 }
 
 .operator {
@@ -94,7 +85,7 @@ input[type="number"] {
 .container {
     max-width: 1000px;
     margin: 0 auto;
-    background-color: #ffffff; /* コンテナの背景色を白に変更 */
+    background-color: #ffffff; 
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -115,12 +106,10 @@ div {
     align-items: flex-start;
 }
 
-/* 出力と証明テキストの色を設定 */
 .output h2, .proof-container h2 {
     color: #333333;
 }
 
-/* JSON証明のスタイルを設定 */
 #json-proof {
     color: #FFFFFF;
     background-color: #333333;
@@ -128,5 +117,5 @@ div {
     cursor: pointer;
     white-space: pre-wrap;
     border-radius: 5px;
-    display: none; /* 追加: JSON証明がない場合、非表示にする */
+    display: none; 
 }
