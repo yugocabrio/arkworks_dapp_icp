@@ -14,6 +14,7 @@
       },
       "source": [
         "src/arkworks_icp24_frontend/assets",
+        "src/arkworks_icp24_frontend/src/rust_zkp",
         "dist/arkworks_icp24_frontend/"
       ],
       "type": "assets"

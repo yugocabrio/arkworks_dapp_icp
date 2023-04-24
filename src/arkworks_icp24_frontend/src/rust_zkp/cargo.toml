@@ -31,4 +31,4 @@ features = ["console"]
 [profile.release]
 lto = true
 codegen-units = 1
-debug = true  # 追加
+debug = true  

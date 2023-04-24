@@ -40,12 +40,16 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   return false;
 });
 
-document.getElementById("reset-button").addEventListener("click", () => {
+document.getElementById("reset-button").addEventListener("click", (e) => {
+  e.preventDefault(); 
   document.getElementById("number1").value = "";
   document.getElementById("number2").value = "";
-  document.getElementById("verification-result").innerText = "";
+  const resultElement = document.getElementById("verification-result"); 
+  resultElement.innerText = ""; 
+  resultElement.style.display = "none"; 
   const jsonProofElement = document.getElementById("json-proof");
-  jsonProofElement.innerText = ""; 
-  jsonProofElement.style.display = "none"; 
+  jsonProofElement.innerText = "";
+  jsonProofElement.style.display = "none";
 });
+
 
